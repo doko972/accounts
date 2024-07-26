@@ -33,7 +33,7 @@ generateToken();
             <div class="card-header py-3">
                 <h1 class="my-0 fw-normal fs-4">Modifier</h1>
             </div>
-            <form action="edit_handler.php" method="post">
+            <form action="edit_update.php" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom de l'opération *</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Facture d'électricité"
