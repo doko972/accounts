@@ -58,11 +58,12 @@ generateToken();
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- WHERE YEAR(date_transaction) AND MONTH(date_transaction) ORDER BY date_transaction DESC;"); -->
                         <?php
                         $query = $dbCo->query("SELECT icon_class, id_transaction, name, amount, date_transaction 
                         FROM transaction 
                         JOIN category USING (id_category)
-                        WHERE YEAR(date_transaction) AND MONTH(date_transaction) ORDER BY date_transaction DESC;");
+                        WHERE date_transaction ORDER BY date_transaction DESC;");
                         while ($product = $query->fetch()) {
                             echo getHtmlProduct($product);
                         }

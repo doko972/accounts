@@ -17,5 +17,6 @@ $errors = [
 
 $messages = [
     'insert_ok' => 'Le produit à bien été ajouté.',
-    'update_ok' => 'Le produit à bien ete modifié.'
+    'update_ok' => 'Le produit à bien été modifié.',
+    'delete_ko' => 'Le produit à bien été supprimé.'
 ];

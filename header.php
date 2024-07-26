@@ -18,10 +18,11 @@
             </li>
         </ul>
     </nav>
-    <form action="" class="col-12 col-md-4" role="search">
+    <form action="seek.php" class="col-12 col-md-4" role="search" method="GET">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Rechercher..." aria-describedby="button-search">
-            <button class="btn btn-primary" type="submit" id="button-search">
+            <input type="search" name="terme" class="form-control" placeholder="Rechercher..."
+                aria-describedby="button-search">
+            <button class="btn btn-primary" type="submit" name="s" value="Rechercher" id="button-search">
                 <i class="bi bi-search"></i>
             </button>
         </div>
