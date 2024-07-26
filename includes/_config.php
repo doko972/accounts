@@ -6,7 +6,7 @@ $errors = [
     'csrf' => 'Votre session est invalide.',
     'referer' => 'D\'où venez vous ?',
     'insert_ko' => 'Erreur lors de la sauvegarde de la produit.',
-    'update_ko' => 'Erreur lors de la modif du produit.',
+    'update_ko' => 'Erreur lors de la modifification du produit.',
     'delete_ko' => 'Erreur lors de la suppression du produit.',
     'product_name' => 'Saisissez un nom pour le produit',
     'product_name_size' => 'Saisissez un nom pour le produit de 50 caractères au maximum',
@@ -16,6 +16,6 @@ $errors = [
 ];
 
 $messages = [
-    'insert_ok' => 'Produit sauvegardé.',
-    'update_ok' => 'Produit modifié.'
+    'insert_ok' => 'Le produit à bien été ajouté.',
+    'update_ok' => 'Le produit à bien ete modifié.'
 ];

@@ -3,7 +3,8 @@
 function getHtmlProduct(array $product): string
 {
     return '<tr>'
-    . '<td width="50" class="ps-3">'
+    . '<td width="50" class="ps-3">'                            
+    . '<i class="bi bi-' . $product['icon_class'] . ' fs-3"></i>'
     . '</td>'
     . '<td>'
     . '<time datetime="' . $product['date_transaction'] 

@@ -19,13 +19,14 @@ if (!is_numeric($id_transaction)) {
     redirectTo('index.php');
 }
 
-$query = $dbCo->prepare("DELETE FROM transaction WHERE id_transaction = :id_transaction");
+$query = $dbCo->prepare("DELETE FROM transaction 
+WHERE id_transaction = :id_transaction");
 $isDeleteOk = $query->execute(['id_transaction' => intval($id_transaction)]);
 
 if ($isDeleteOk) {
-    addMessage('user_delete_ok');
+    addMessage('delete_ko');
 } else {
-    addError('user_delete_ko');
+    addError('delete_ko');
 }
 
 redirectTo('index.php');

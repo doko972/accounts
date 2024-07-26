@@ -25,6 +25,10 @@ generateToken();
         <?php include 'header.php'; ?>
     </div>
     <div class="container">
+    <?php
+        echo getHtmlErrors($errors);
+        echo getHtmlMessages($messages);
+        ?>
         <section class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
                 <h2 class="my-0 fw-normal fs-4">Solde aujourd'hui</h2>
@@ -55,7 +59,9 @@ generateToken();
                     </thead>
                     <tbody>
                         <?php
-                        $query = $dbCo->query("SELECT id_transaction, name, amount, date_transaction FROM transaction 
+                        $query = $dbCo->query("SELECT icon_class, id_transaction, name, amount, date_transaction 
+                        FROM transaction 
+                        JOIN category USING (id_category)
                         WHERE YEAR(date_transaction) AND MONTH(date_transaction) ORDER BY date_transaction DESC;");
                         while ($product = $query->fetch()) {
                             echo getHtmlProduct($product);
