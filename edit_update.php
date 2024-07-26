@@ -42,3 +42,4 @@ if ($isUpdateOk) {
 }
 
 redirectTo('index.php');
+?>

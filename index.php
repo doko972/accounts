@@ -7,7 +7,6 @@ include 'includes/_database.php';
 include 'includes/_template.php';
 
 generateToken();
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
