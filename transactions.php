@@ -37,8 +37,27 @@ if (
     } else {
         addError('insert_ko');
     }
-}
+} else if (
+    isset($_REQUEST['action'], $_REQUEST['type']) && $_REQUEST['action'] === 'modify'
+    && $_REQUEST['type'] === 'transaction' && $_SERVER['REQUEST_METHOD'] === 'POST'
+) {
 
-// Redirection après traitement
+    $insert = $dbCo->prepare("UPDATE transaction 
+    SET name = :name, amount = :amount, date_transaction = :date_transaction, id_category = :id_category   
+    WHERE id_transaction  = :id_transaction ;");
+
+    $isInsertOk = $insert->execute([
+        'name' => $name,
+        'amount' => $amount,
+        'date_transaction' => $date_transaction,
+        'id_category' => $id_category ?: null
+    ]);
+
+    if ($isUpdateOk && $insert->rowCount() === 1) {
+        addMessage('update_ok');
+    } else {
+        addError('update_ko');
+    }
+}
 redirectTo('index.php');
 ?>

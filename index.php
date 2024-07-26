@@ -23,38 +23,8 @@ generateToken();
 
 <body>
     <div class="container-fluid">
-        <header class="row flex-wrap justify-content-between align-items-center p-3 mb-4 border-bottom">
-            <a href="index.html" class="col-1">
-                <i class="bi bi-piggy-bank-fill text-primary fs-1"></i>
-            </a>
-            <nav class="col-11 col-md-7">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link link-secondary" aria-current="page">Opérations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="summary.html" class="nav-link link-body-emphasis">Synthèses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="categories.html" class="nav-link link-body-emphasis">Catégories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="import.html" class="nav-link link-body-emphasis">Importer</a>
-                    </li>
-                </ul>
-            </nav>
-            <form action="" class="col-12 col-md-4" role="search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Rechercher..."
-                        aria-describedby="button-search">
-                    <button class="btn btn-primary" type="submit" id="button-search">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </form>
-        </header>
+        <?php include 'header.php'; ?>
     </div>
-
     <div class="container">
         <section class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
@@ -86,142 +56,12 @@ generateToken();
                     </thead>
                     <tbody>
                         <?php
-                        $query = $dbCo->query("SELECT name, amount, date_transaction FROM transaction 
+                        $query = $dbCo->query("SELECT id_transaction, name, amount, date_transaction FROM transaction 
                         WHERE YEAR(date_transaction) AND MONTH(date_transaction) ORDER BY date_transaction DESC;");
                         while ($product = $query->fetch()) {
                             echo getHtmlProduct($product);
                         }
                         ?>
-                        <!-- <tr>
-                            <td width="50" class="ps-3">
-                            </td>
-                            <td>
-                                <time datetime="2023-07-10" class="d-block fst-italic fw-light">10/07/2023</time>
-                                Bar
-                            </td>
-                            <td class="text-end">
-                                <span class="rounded-pill text-nowrap bg-warning-subtle px-2">
-                                    - 32,00 €
-                                </span>
-                            </td>
-                            <td class="text-end text-nowrap">
-                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="#" class="btn btn-outline-danger btn-sm rounded-circle">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
-                        </tr> -->
-                        <!-- <tr>
-                            <td width="50" class="ps-3">
-                                <i class="bi bi-car-front fs-3"></i>
-                            </td>
-                            <td>
-                                <time datetime="2023-07-10" class="d-block fst-italic fw-light">10/07/2023</time>
-                                Essence voiture
-                            </td>
-                            <td class="text-end">
-                                <span class="rounded-pill text-nowrap bg-warning-subtle px-2">
-                                    - 94,00 €
-                                </span>
-                            </td>
-                            <td class="text-end text-nowrap">
-                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="#" class="btn btn-outline-danger btn-sm rounded-circle">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="50" class="ps-3">
-                            </td>
-                            <td>
-                                <time datetime="2023-07-08" class="d-block fst-italic fw-light">8/07/2023</time>
-                                Facture électricité
-                            </td>
-                            <td class="text-end">
-                                <span class="rounded-pill text-nowrap bg-warning-subtle px-2">
-                                    - 83,00 €
-                                </span>
-                            </td>
-                            <td class="text-end text-nowrap">
-                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="#" class="btn btn-outline-danger btn-sm rounded-circle">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="50" class="ps-3">
-                                <i class="bi bi-house-door fs-3"></i>
-                            </td>
-                            <td>
-                                <time datetime="2023-07-05" class="d-block fst-italic fw-light">5/07/2023</time>
-                                Loyer de Juillet 2023
-                            </td>
-                            <td class="text-end">
-                                <span class="rounded-pill text-nowrap bg-warning-subtle px-2">
-                                    - 432,00 €
-                                </span>
-                            </td>
-                            <td class="text-end text-nowrap">
-                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="#" class="btn btn-outline-danger btn-sm rounded-circle">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="50" class="ps-3">
-                                <i class="bi bi-train-front fs-3"></i>
-                            </td>
-                            <td>
-                                <time datetime="2023-07-02" class="d-block fst-italic fw-light">2/07/2023</time>
-                                Billets de train Lille
-                            </td>
-                            <td class="text-end">
-                                <span class="rounded-pill text-nowrap bg-warning-subtle px-2">
-                                    - 89,00 €
-                                </span>
-                            </td>
-                            <td class="text-end text-nowrap">
-                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="#" class="btn btn-outline-danger btn-sm rounded-circle">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="50" class="ps-3">
-                                <i class="bi bi-bandaid fs-3"></i>
-                            </td>
-                            <td>
-                                <time datetime="2023-07-02" class="d-block fst-italic fw-light">2/07/2023</time>
-                                Reboursement sécurité sociale
-                            </td>
-                            <td class="text-end">
-                                <span class="rounded-pill text-nowrap bg-success-subtle px-2">
-                                    + 48,00 €
-                                </span>
-                            </td>
-                            <td class="text-end text-nowrap">
-                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="#" class="btn btn-outline-danger btn-sm rounded-circle">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
-                        </tr>-->
                     </tbody>
                 </table>
             </div>
@@ -258,12 +98,7 @@ generateToken();
             <i class="bi bi-plus fs-1"></i>
         </a>
     </div>
-
-    <footer class="py-3 mt-4 border-top">
-        <p class="text-center text-body-secondary">© 2023 Mes comptes</p>
-    </footer>
-
-
+    <?php include 'footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

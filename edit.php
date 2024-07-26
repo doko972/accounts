@@ -24,7 +24,6 @@ generateToken();
     <div class="container-fluid">
         <?php include 'header.php'; ?>
     </div>
-
     <div class="container">
         <?php
         echo getHtmlErrors($errors);
@@ -32,9 +31,9 @@ generateToken();
         ?>
         <section class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
-                <h1 class="my-0 fw-normal fs-4">Ajouter une opération</h1>
+                <h1 class="my-0 fw-normal fs-4">Modifier</h1>
             </div>
-            <form action="transactions.php" method="post">
+            <form action="edit_handler.php" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom de l'opération *</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Facture d'électricité"
@@ -66,7 +65,7 @@ generateToken();
                     </select>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Modifier</button>
                 </div>
                 <input type="hidden" name="action" value="create">
                 <input type="hidden" name="type" value="transaction">
