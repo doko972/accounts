@@ -28,3 +28,4 @@ function getHtmlProduct(array $product): string
         . '</tr>'
         . '</tbody>';
 }
+

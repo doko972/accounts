@@ -61,7 +61,13 @@ generateToken();
                 <h2 class="my-0 fw-normal fs-4">Solde aujourd'hui</h2>
             </div>
             <div class="card-body">
-                <p class="card-title pricing-card-title text-center fs-1">625,34 €</p>
+                <p class="card-title pricing-card-title text-center fs-1">
+                    <?php
+                    $total = $dbCo->query("SELECT SUM(amount) FROM transaction;");
+                    $result = $total->fetch(PDO::FETCH_ASSOC);
+                    echo strval($result['SUM(amount)']);
+                    ?> €
+                </p>
             </div>
         </section>
 
@@ -80,7 +86,8 @@ generateToken();
                     </thead>
                     <tbody>
                         <?php
-                        $query = $dbCo->query("SELECT name, amount, date_transaction FROM transaction ORDER BY id_transaction DESC;");
+                        $query = $dbCo->query("SELECT name, amount, date_transaction FROM transaction 
+                        WHERE YEAR(date_transaction) AND MONTH(date_transaction) ORDER BY date_transaction DESC;");
                         while ($product = $query->fetch()) {
                             echo getHtmlProduct($product);
                         }
@@ -230,13 +237,13 @@ generateToken();
                             <span class="page-link">Juillet 2023</span>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="index.html">Juin 2023</a>
+                            <a class="page-link" href="index.php">Juin 2023</a>
                         </li>
                         <li class="page-item">
                             <span class="page-link">...</span>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="index.html">
+                            <a class="page-link" href="index.php">
                                 <i class="bi bi-arrow-right"></i>
                             </a>
                         </li>
@@ -247,7 +254,7 @@ generateToken();
     </div>
 
     <div class="position-fixed bottom-0 end-0 m-3">
-        <a href="add.html" class="btn btn-primary btn-lg rounded-circle">
+        <a href="add.php" class="btn btn-primary btn-lg rounded-circle">
             <i class="bi bi-plus fs-1"></i>
         </a>
     </div>
