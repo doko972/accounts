@@ -4,7 +4,8 @@
  *
  * @return void
  */
-function generateToken() {
+function generateToken()
+{
     if (!isset($_SESSION['token']) || !isset($_SESSION['tokenExpire']) || $_SESSION['tokenExpire'] < time()) {
         $_SESSION['token'] = md5(uniqid(mt_rand(), true));
         $_SESSION['tokenExpire'] = time() + 60 * 15;
@@ -16,7 +17,8 @@ function generateToken() {
  * @param string $url
  * @return void
  */
-function redirectTo(string $url): void {
+function redirectTo(string $url): void
+{
     if (headers_sent()) {
         echo "<script>location.href='$url';</script>";
     } else {
@@ -31,11 +33,12 @@ function redirectTo(string $url): void {
  * @param string $liClass an optional CSS class to add to LI elements
  * @return string the HTML list
  */
-function getArrayAsHTMLList(array $array, string $ulClass = '', string $liClass = ''): string {
+function getArrayAsHTMLList(array $array, string $ulClass = '', string $liClass = ''): string
+{
     $ulClass = $ulClass ? ' class="' . $ulClass . '"' : '';
     $liClass = $liClass ? ' class="' . $liClass . '"' : '';
     return '<ul' . $ulClass . '>'
-        . implode(array_map(fn ($v) => '<li' . $liClass . '>' . $v . '</li>', $array))
+        . implode(array_map(fn($v) => '<li' . $liClass . '>' . $v . '</li>', $array))
         . '</ul>';
 }
 /**
@@ -44,11 +47,12 @@ function getArrayAsHTMLList(array $array, string $ulClass = '', string $liClass 
  * @param array $errorsList - Available errors list
  * @return string HTMl to display errors
  */
-function getHtmlErrors(array $errorsList): string {
+function getHtmlErrors(array $errorsList): string
+{
     if (!empty($_SESSION['errorsList'])) {
         $errors = $_SESSION['errorsList'];
         unset($_SESSION['errorsList']);
-        return getArrayAsHTMLList(array_map(fn ($e) => $errorsList[$e] ?? 'Erreur inconnue', $errors), 'notif-error');
+        return getArrayAsHTMLList(array_map(fn($e) => $errorsList[$e] ?? 'Erreur inconnue', $errors), 'notif-error');
     }
     return '';
 }
@@ -58,7 +62,8 @@ function getHtmlErrors(array $errorsList): string {
  * @param array $messagesList - Available Messages list
  * @return string HTML to display messages
  */
-function getHtmlMessages(array $messagesList): string {
+function getHtmlMessages(array $messagesList): string
+{
     if (isset($_SESSION['msg'])) {
         $m = $_SESSION['msg'];
         unset($_SESSION['msg']);
@@ -71,7 +76,8 @@ function getHtmlMessages(array $messagesList): string {
  *
  * @return boolean Is the current referer valid ?
  */
-function isRefererOk(): bool {
+function isRefererOk(): bool
+{
     global $globalUrl;
     return isset($_SERVER['HTTP_REFERER']) && str_contains($_SERVER['HTTP_REFERER'], $globalUrl);
 }
@@ -81,8 +87,10 @@ function isRefererOk(): bool {
  * @param array|null $data Input data
  * @return boolean Is there a valid toekn in user session ?
  */
-function isTokenOk(?array $data = null): bool {
-    if (!is_array($data)) $data = $_REQUEST;
+function isTokenOk(?array $data = null): bool
+{
+    if (!is_array($data))
+        $data = $_REQUEST;
     return isset($_SESSION['token']) && isset($data['token']) && $_SESSION['token'] === $data['token'];
 }
 /**
@@ -90,7 +98,8 @@ function isTokenOk(?array $data = null): bool {
  *
  * @return void
  */
-function preventCSRF(string $redirectUrl = 'index.php'): void {
+function preventCSRF(string $redirectUrl = 'index.php'): void
+{
     if (!isRefererOk()) {
         addError('referer');
         redirectTo($redirectUrl);
@@ -106,9 +115,12 @@ function preventCSRF(string $redirectUrl = 'index.php'): void {
  * @param array $inputData
  * @return void
  */
-function preventCSRFAPI(array $inputData): void {
-    if (!isRefererOk()) triggerError('referer');
-    if (!isTokenOk($inputData)) triggerError('csrf');
+function preventCSRFAPI(array $inputData): void
+{
+    if (!isRefererOk())
+        triggerError('referer');
+    if (!isTokenOk($inputData))
+        triggerError('csrf');
 }
 /**
  * Print an error in json format and stop script.
@@ -116,7 +128,8 @@ function preventCSRFAPI(array $inputData): void {
  * @param string $error Error code from errors array available in _congig.php
  * @return void
  */
-function triggerError(string $error): void {
+function triggerError(string $error): void
+{
     global $errors;
     echo json_encode([
         'isOk' => false,
@@ -130,7 +143,8 @@ function triggerError(string $error): void {
  * @param string $errorMsg - Error message to display
  * @return void
  */
-function addError(string $errorMsg): void {
+function addError(string $errorMsg): void
+{
     if (!isset($_SESSION['errorsList'])) {
         $_SESSION['errorsList'] = [];
     }
@@ -142,7 +156,8 @@ function addError(string $errorMsg): void {
  * @param string $message - Message to display
  * @return void
  */
-function addMessage(string $message): void {
+function addMessage(string $message): void
+{
     $_SESSION['msg'] = $message;
 }
 /**
@@ -150,7 +165,8 @@ function addMessage(string $message): void {
  *
  * @return void
  */
-function eraseFormData(): void {
+function eraseFormData(): void
+{
     unset($_SESSION['formData']);
 }
 /**
@@ -158,7 +174,9 @@ function eraseFormData(): void {
  *
  * @param array $data - input values
  */
-function stripTagsArray(array &$data): void {
+function stripTagsArray(array &$data): void
+{
     $data = array_map('strip_tags', $data);
 }
+
 ?>
